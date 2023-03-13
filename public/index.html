@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLANET</title>
+    <style>
+      th,
+      td {
+        border: 1px solid;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Planet di tata surya</h1>
+    <table>
+      <thead>
+        <th>name</th>
+        <th>mass</th>
+        <th>diameter</th>
+        <th>density</th>
+        <th>gravity</th>
+        <th>mean</th>
+        <th>number moons</th>
+        <th>notes</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      fetch("/api/planet")
+        .then((response) => response.json())
+        .then((planet) => {
+          const tbody = document.querySelector("tbody");
+          planet.forEach((m) => {
+            const tr = document.createElement("tr");
+
+            const tdName = document.createElement("td");
+            tdName.textContent = m.name;
+            tr.appendChild(tdName);
+
+            const tdMass = document.createElement("td");
+            tdMass.textContent = m.mass;
+            tr.appendChild(tdMass);
+
+            const tdMeter = document.createElement("td");
+            tdMeter.textContent = m.diameter;
+            tr.appendChild(tdMeter);
+
+            const tdDensi = document.createElement("td");
+            tdDensi.textContent = m.density;
+            tr.appendChild(tdDensi);
+
+            const tdGravi = document.createElement("td");
+            tdGravi.textContent = m.gravity;
+            tr.appendChild(tdGravi);
+
+            const tdMean = document.createElement("td");
+            tdMean.textContent = m.mean;
+            tr.appendChild(tdMean);
+
+            const tdNumber = document.createElement("td");
+            tdNumber.textContent = m.number_moons;
+            tr.appendChild(tdNumber);
+
+            const tdNote = document.createElement("td");
+            tdNote.textContent = m.notes;
+            tr.appendChild(tdNote);
+
+            tbody.appendChild(tr);
+          });
+        });
+    </script>
+  </body>
+</html>
